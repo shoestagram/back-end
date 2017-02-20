@@ -1,0 +1,29 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": ",-----.,--.                  ,--. ,---.   ,--.,------.  ,------.     '  .--./|  | ,---. ,--.,--. ,-|  || o   \\  |  ||  .-.  \\ |  .---'     |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \\  :|  `--,      '  '--'\\|  |' '-' ''  ''  '\\ `-' | .'  /   |  ||  '--'  /|  `---.      `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'     -----------------------------------------------------------------",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "jsonminify": "^0.4.1",
+    "node-fetch": "^1.6.3",
+    "promise-mysql": "^3.0.0",
+    "secure-random": "^1.1.1"
+  },
+  "devDependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.16.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
+    "morgan": "^1.7.0",
+    "mysql": "^2.13.0",
+    "promise-mysql": "^3.0.0",
+    "pug": "^2.0.0-beta10",
+    "secure-random": "^1.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
