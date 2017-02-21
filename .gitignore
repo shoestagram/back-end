@@ -1,0 +1,32 @@
+## General
+.cvs
+.htaccess
+.svn
+*.bak
+*.log
+*.swp
+*.iml
+
+## Windows
+Desktop.ini
+Thumbs.db
+
+## Mac
+.DS_Store
+
+## WordPress
+wp-core/wp-content/*
+!wp-core/wp-content/plugins/
+!wp-core/wp-content/themes/
+
+
+## Development
+.sass-cache
+bower_components
+node_modules
+publish
+wp-core
+.idea
+
+## Private
+secrets.json
