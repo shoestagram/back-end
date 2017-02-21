@@ -46,10 +46,12 @@ connection.query(queryStr)
     // Fetch all item from media table
     connection.query(queryStr)
       .then(function(result) {
-
+ 
         // Loops through media items
         result.forEach(function(mediaItem, index) {
 
+          var keys = mediaItem.keyword.split(", ");
+          
           var url = "http://svcs.ebay.com/services/search/FindingService/v1";
           url += "?OPERATION-NAME=findItemsByKeywords";
           url += "&SERVICE-VERSION=1.0.0";
@@ -57,9 +59,11 @@ connection.query(queryStr)
           url += "&GLOBAL-ID=EBAY-US";
           url += "&RESPONSE-DATA-FORMAT=JSON";
           url += "&REST-PAYLOAD";
-          url += "&keywords=" + mediaItem.keyword;
+          url += "&keywords=" + keys[0] + " " + keys[1] + " " + keys[2] + " " + keys[3];
           url += "&paginationInput.entriesPerPage=10";
-
+          
+          console.log();
+          
           // Fetch ebay details
           fetch(url)
             .then(function(res) {
@@ -84,15 +88,15 @@ connection.query(queryStr)
                   INSERT INTO shop_links VALUES (null, now(), now(), null, ?, ?, ${mediaItem.id})
                 `;
   
-                    previous = item.itemId[0];
-  
-                    connection.query(queryStr, [item.viewItemURL, item.title])
-                      .then(function(result) {
-                        console.log(result);
-                      })
-                      .catch(function(err) {
-                        console.log(err);
-                      })
+                  previous = item.itemId[0];
+
+                  connection.query(queryStr, [item.viewItemURL, item.title])
+                  .then(function(result) {
+                    console.log(result);
+                  })
+                  .catch(function(err) {
+                    console.log(err);
+                  })
                 }
 
               })
@@ -102,7 +106,6 @@ connection.query(queryStr)
               console.log(err);
             })
         })
-
 
       })
       .catch(function(err) {
