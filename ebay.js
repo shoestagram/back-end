@@ -1,8 +1,8 @@
 var fetch = require('node-fetch');
 
 /*===================================================
- *  Truncate shop_links table
- *  Loop through media table and populate shop_links
+ * 1. Truncate shop_links table
+ * 2. Loop through media table and populate shop_links
  *====================================================*/
 
 
@@ -78,29 +78,29 @@ connection.query(queryStr)
               body.findItemsByKeywordsResponse[0].searchResult[0].item.forEach(function(item, index) {
 
                 // Ignore if itemId already exist 
-                if (previous !== item.itemId[0]) {
+              if (previous !== item.itemId[0]) {
 
-                  var queryStr = `
-                INSERT INTO shop_links VALUES (null, now(), now(), null, ?, ?, ${mediaItem.id})
-              `;
-
-                  previous = item.itemId[0];
-
-                  connection.query(queryStr, [item.viewItemURL, item.title])
-                    .then(function(result) {
-                      console.log(result);
-                    })
-                    .catch(function(err) {
-                      console.log(err);
-                    })
+                var queryStr = `
+                  INSERT INTO shop_links VALUES (null, now(), now(), null, ?, ?, ${mediaItem.id})
+                `;
+  
+                    previous = item.itemId[0];
+  
+                    connection.query(queryStr, [item.viewItemURL, item.title])
+                      .then(function(result) {
+                        console.log(result);
+                      })
+                      .catch(function(err) {
+                        console.log(err);
+                      })
                 }
 
               })
 
-            }).catch(function(err) {
+            })
+            .catch(function(err) {
               console.log(err);
-            });
-
+            })
         })
 
 
