@@ -29,12 +29,6 @@ var connection = mysql.createPool({
   password: 'Q<U*.5@f461Sv7ffh3+3',
   database: 'decodemtl_shoestagram',
   connectionLimit: 10
-
-  // host: process.env.IP,
-  // user: process.env.C9_USER,
-  // password: '',
-  // database: 'shoestagram',
-  // connectionLimit: 10
 });
 
 // load our reddit API

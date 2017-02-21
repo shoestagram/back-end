@@ -12,6 +12,7 @@ CREATE TABLE `media` (
   `source_id` varchar(200) DEFAULT NULL,
   `crawled_retails_shops` boolean DEFAULT NULL,
   `crawled_shops_links` boolean DEFAULT NULL,
+  `shop_url` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -22,11 +23,11 @@ now(),
 now(), 
 'https://project-allendecodemtl.c9users.io/001.png', 
 'https://project-allendecodemtl.c9users.io/001.png',
-'text','keyword',
+'text','vans sneakers',
 'normalised',
 'source_url', 
 'source_user', 
-'source_id', false, false);
+'source_id', false, false, 'shop_url');
 
 insert into media values 
 (null, 
@@ -34,11 +35,11 @@ now(),
 now(), 
 'https://project-allendecodemtl.c9users.io/002.png', 
 'https://project-allendecodemtl.c9users.io/002.png',
-'text','keyword',
+'text','adidas sneakers men',
 'normalised',
 'source_url', 
 'source_user', 
-'source_id', false, false);
+'source_id', false, false,'shop_url');
 
 insert into media values 
 (null, 
@@ -46,35 +47,12 @@ now(),
 now(), 
 'https://project-allendecodemtl.c9users.io/003.png', 
 'https://project-allendecodemtl.c9users.io/003.png',
-'text','keyword',
+'text','nike sneakers adida',
 'normalised',
 'source_url', 
 'source_user', 
-'source_id', false, false);
+'source_id', false, false,'shop_url');
 
-insert into media values 
-(null, 
-now(), 
-now(), 
-'https://project-allendecodemtl.c9users.io/001.png', 
-'https://project-allendecodemtl.c9users.io/003.png',
-'text','keyword',
-'nike',
-'source_url', 
-'source_user', 
-'source_id', false, false);
-
-insert into media values 
-(null, 
-now(), 
-now(), 
-'https://project-allendecodemtl.c9users.io/002.png', 
-'https://project-allendecodemtl.c9users.io/003.png',
-'text','keyword',
-'nike black',
-'source_url', 
-'source_user', 
-'source_id', false, false);
 
 
 CREATE TABLE `profile` (
@@ -99,6 +77,7 @@ CREATE TABLE `shop_links` (
   `price` decimal(12,2) DEFAULT NULL,
   `url` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
+  `media_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 

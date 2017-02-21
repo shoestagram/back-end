@@ -1,7 +1,7 @@
 function searchMedia(searchTerm, conn) {
 
     var queryStr = `
-        SELECT
+        SELECT 
           id,
           date_created,
           date_updated,
@@ -14,9 +14,10 @@ function searchMedia(searchTerm, conn) {
           source_user,
           source_id,
           crawled_retails_shops,
-          crawled_shops_links
+          crawled_shops_links,
+          shop_url
         FROM media
-        WHERE norm_description like ?
+        WHERE keyword like ?
     `;
 
     var promOne = conn.query(queryStr, [searchTerm]);
@@ -41,7 +42,8 @@ function searchMedia(searchTerm, conn) {
               source_user: item.source_user,
               source_id: item.source_id,
               crawled_retails_shops: item.crawled_retails_shops,
-              crawled_shops_links: item.crawled_shops_links
+              crawled_shops_links: item.crawled_shops_links,
+              shop_url: item.shop_url
             }
 
             arrResult.push(temp);
@@ -58,7 +60,7 @@ function searchMedia(searchTerm, conn) {
 function getAllMedia(options, conn) {
 
     var queryStr = `
-        SELECT
+        SELECT 
           id,
           date_created,
           date_updated,
@@ -71,7 +73,8 @@ function getAllMedia(options, conn) {
           source_user,
           source_id,
           crawled_retails_shops,
-          crawled_shops_links
+          crawled_shops_links,
+          shop_url
         FROM media
     `;
 
@@ -97,7 +100,8 @@ function getAllMedia(options, conn) {
               source_user: item.source_user,
               source_id: item.source_id,
               crawled_retails_shops: item.crawled_retails_shops,
-              crawled_shops_links: item.crawled_shops_links
+              crawled_shops_links: item.crawled_shops_links,
+              shop_url: item.shop_url
             }
 
             arrResult.push(temp);
@@ -114,7 +118,7 @@ function getAllMedia(options, conn) {
 function getSingleMedia(mediaId, conn) {
 
     var queryStr = `
-        SELECT
+        SELECT 
           id,
           date_created,
           date_updated,
@@ -127,7 +131,8 @@ function getSingleMedia(mediaId, conn) {
           source_user,
           source_id,
           crawled_retails_shops,
-          crawled_shops_links
+          crawled_shops_links,
+          shop_url
         FROM media
         WHERE id = ?
     `;
@@ -152,7 +157,8 @@ function getSingleMedia(mediaId, conn) {
               source_user: item.source_user,
               source_id: item.source_id,
               crawled_retails_shops: item.crawled_retails_shops,
-              crawled_shops_links: item.crawled_shops_links
+              crawled_shops_links: item.crawled_shops_links,
+              shop_url: item.shop_url
             }
 
             arrResult.push(temp);
@@ -170,7 +176,7 @@ function getSingleMedia(mediaId, conn) {
 function getAllProfile(options, conn) {
 
     var queryStr = `
-        SELECT
+        SELECT 
           id,
           date_created,
           date_updated,
@@ -213,7 +219,7 @@ function getAllProfile(options, conn) {
 function getSingleProfile(profileId, conn) {
 
     var queryStr = `
-        SELECT
+        SELECT 
           id,
           date_created,
           date_updated,
@@ -257,13 +263,14 @@ function getSingleProfile(profileId, conn) {
 function shopLinks(options, conn) {
 
     var queryStr = `
-        SELECT
+        SELECT 
           id,
           date_created,
           date_updated,
           price,
           url,
-          description
+          description,
+          media_id
         FROM shop_links
     `;
 
@@ -280,7 +287,8 @@ function shopLinks(options, conn) {
             date_updated: item.date_updated,
             price: item.price,
             url: item.url,
-            description: item.description
+            description: item.description,
+            media_id: item.media_id
             }
 
             arrResult.push(temp);
