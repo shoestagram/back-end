@@ -74,6 +74,7 @@ CREATE TABLE `shop_links` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_created` DATETIME NOT NULL,
   `date_updated` DATETIME NOT NULL,
+  `source` varchar(200) DEFAULT NULL,
   `price` decimal(12,2) DEFAULT NULL,
   `url` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -89,8 +90,27 @@ CREATE TABLE `retail_shops` (
   `date_updated` DATETIME NOT NULL,
   `supplier_name` varchar(200) DEFAULT NULL,
   `address` varchar(200) DEFAULT NULL,
+  `city` varchar(200) DEFAULT NULL,
+  `province` varchar(200) DEFAULT NULL,
   `postcode` varchar(200) DEFAULT NULL,
   `tel` varchar(200) DEFAULT NULL,
   `geo_loc` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+   PRIMARY KEY (`id`)
 );
+
+
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_created` DATETIME NOT NULL,
+  `date_updated` DATETIME NOT NULL,
+  `user_id` varchar(200) DEFAULT NULL,
+  `media_id` int(11) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+);
+
+
+insert into likes values (null, now(), now(), 'facebook|157230524788389', 1);
+insert into likes values (null, now(), now(), 'facebook|157230524788389', 2);
+insert into likes values (null, now(), now(), 'facebook|157230524788389', 3);
+insert into likes values (null, now(), now(), 'facebook|157230524788389', 4);
+insert into likes values (null, now(), now(), 'facebook|157230524788389', 5);

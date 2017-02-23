@@ -19,7 +19,7 @@ url += "&GLOBAL-ID=EBAY-US";
 url += "&RESPONSE-DATA-FORMAT=JSON";
 //   url += "&callback=decodeMTL";
 url += "&REST-PAYLOAD";
-url += "&keywords=sneakers vans men";
+url += "&keywords=sneakers adidas";
 url += "&paginationInput.entriesPerPage=10";
 
 
@@ -38,24 +38,9 @@ fetch(url)
  
   // Loop through array
   body.findItemsByKeywordsResponse[0].searchResult[0].item.forEach(function(item, index){
-
-    // Ignore if itemId already exist 
-    if (previous !== item.itemId[0]) {
-      
-      var queryStr = `
-        INSERT INTO shop_links VALUES (null, now(), now(), null, ?, ?)
-      `;
-      
-      previous = item.itemId[0];
-        
-      connection.query(queryStr,[item.viewItemURL, item.title])
-      .then(function(result) {
-          console.log(result);
-      })
-      .catch(function(err){
-          console.log(err);
-      })
-    }
+    
+    console.log(item.viewItemURL);
+    console.log(item.sellingStatus[0].currentPrice[0].__value__);
     
   })
 

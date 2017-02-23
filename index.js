@@ -34,6 +34,10 @@ var connection = mysql.createPool({
 // load our reddit API
 var shoestagramAPI = require('./shoestagram');
 
+app.get('/', function(request, response) {
+
+  response.send("Shoestagram API");
+});
 
 app.get('/media', function(request, response) {
 
@@ -52,22 +56,40 @@ app.get('/media/:id', function(request, response) {
 });
 
 app.get('/profile', function(request, response) {
-
-  shoestagramAPI.getAllProfile({}, connection)
+  
+  var x = "x-user-id";
+  var user_id = request.headers[x];
+  
+  shoestagramAPI.getSingleProfile(user_id, connection)
   .then(function(result) {
     response.json(result);
   })
 });
 
-app.get('/profile/:id', function(request, response) {
 
-  shoestagramAPI.getSingleProfile(request.params.id, connection)
+app.post('/profile', function(request, response) {
+  
+  var u = "x-user-id";
+  var user_id = request.headers[u];
+  
+  var m = "x-media-id";
+  var media_id = request.headers[m];
+
+  
+  shoestagramAPI.postLikes(user_id, media_id, connection)
   .then(function(result) {
-    response.json(result);
+     response.json(result);
   })
+
+ 
+  
 });
+
 
 app.get('/search', function(request, response) {
+
+  var x = "x-user-id";
+  console.log(request.headers[x]);
 
   shoestagramAPI.searchMedia(request.query.key, connection)
   .then(function(result) {
@@ -82,6 +104,15 @@ app.get('/shoplinks', function(request, response) {
     response.json(result);
   })
 });
+
+app.get('/retail_shops', function(request, response) {
+
+  shoestagramAPI.retail_shops({}, connection)
+  .then(function(result) {
+    response.json(result);
+  })
+});
+
 
 
 // Listen

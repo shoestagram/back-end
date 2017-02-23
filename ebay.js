@@ -85,12 +85,12 @@ connection.query(queryStr)
               if (previous !== item.itemId[0]) {
 
                 var queryStr = `
-                  INSERT INTO shop_links VALUES (null, now(), now(), null, ?, ?, ${mediaItem.id})
+                  INSERT INTO shop_links VALUES (null, now(), now(), 'amazon', ?, ?, ?, ?)
                 `;
   
                   previous = item.itemId[0];
-
-                  connection.query(queryStr, [item.viewItemURL, item.title])
+  
+                  connection.query(queryStr, [item.sellingStatus[0].currentPrice[0].__value__, item.viewItemURL, item.title, mediaItem.id])
                   .then(function(result) {
                     console.log(result);
                   })
