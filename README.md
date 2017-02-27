@@ -1,5 +1,5 @@
 # Shoestagram backend server
-The backend server is built using nodejs.
+The backend server is built using express js and is connected to a mysql database.
 
 
 # Install backend node dependencies
