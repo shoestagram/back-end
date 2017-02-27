@@ -2,7 +2,7 @@
 The backend server is built using nodejs and mysql server.
 
 
-# Install backend dependencies
+# Install backend node dependencies
 Install the backend server dependencies using npm:
 
 ```sh
