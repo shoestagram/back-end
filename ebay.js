@@ -85,7 +85,7 @@ connection.query(queryStr)
               if (previous !== item.itemId[0]) {
 
                 var queryStr = `
-                  INSERT INTO shop_links VALUES (null, now(), now(), 'amazon', ?, ?, ?, ?)
+                  INSERT INTO shop_links VALUES (null, now(), now(), 'ebay', ?, ?, ?, ?)
                 `;
   
                   previous = item.itemId[0];

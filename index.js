@@ -6,7 +6,6 @@ var morgan = require('morgan');
 
 var app = express();
 
-
 // Middleware
 // This middleware will parse the POST requests coming from an HTML form, and put the result in req.body.  Read the docs for more info!
 app.use(bodyParser.urlencoded({
@@ -31,7 +30,7 @@ var connection = mysql.createPool({
   connectionLimit: 10
 });
 
-// load our reddit API
+
 var shoestagramAPI = require('./shoestagram');
 
 app.get('/', function(request, response) {
@@ -74,15 +73,12 @@ app.post('/profile', function(request, response) {
   
   var m = "x-media-id";
   var media_id = request.headers[m];
-
   
   shoestagramAPI.postLikes(user_id, media_id, connection)
   .then(function(result) {
      response.json(result);
   })
-
  
-  
 });
 
 
@@ -97,9 +93,9 @@ app.get('/search', function(request, response) {
   })
 });
 
-app.get('/shoplinks', function(request, response) {
+app.get('/shoplinks/:id', function(request, response) {
 
-  shoestagramAPI.shopLinks({}, connection)
+  shoestagramAPI.shopLinks(request.params.id, connection)
   .then(function(result) {
     response.json(result);
   })
@@ -112,7 +108,6 @@ app.get('/retail_shops', function(request, response) {
     response.json(result);
   })
 });
-
 
 
 // Listen

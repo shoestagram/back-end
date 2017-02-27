@@ -281,7 +281,7 @@ function getSingleProfile(profileId, conn) {
 }
 
 
-function shopLinks(options, conn) {
+function shopLinks(media_id, conn) {
 
     var queryStr = `
         SELECT 
@@ -294,10 +294,11 @@ function shopLinks(options, conn) {
           description,
           media_id
         FROM shop_links
+        WHERE media_id = ?
         ORDER BY media_id
     `;
 
-    return conn.query(queryStr)
+    return conn.query(queryStr, [media_id])
     .then(function(result) {
 
         var arrResult = [];
@@ -389,15 +390,18 @@ function postLikes(u_id, m_id, conn) {
     return conn.query(queryStr, [u_id, m_id])
     .then(function(result) {
 
+       // Check is already liked
        if (result[0].Num === 0) {
            
            return conn.query(
             'INSERT INTO likes VALUES (null, now(), now(), ?,?)', [u_id, m_id])
             .then(function(result) {
+                console.log("Successful");               
                 return "Successful";
             })
        }
        
+       console.log("Already Exist");
        return "Already Exist";
 
     })
